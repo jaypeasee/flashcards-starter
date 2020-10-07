@@ -20,5 +20,5 @@ describe('Game', function() {
 
   it('should start the game by creating cards', function() {
     game.start();
-  })
+  });
 });
