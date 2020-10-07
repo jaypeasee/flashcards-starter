@@ -4,7 +4,6 @@ const expect = chai.expect;
 const Round = require('../src/Round');
 const Deck = require('../src/Deck');
 const Card = require('../src/Card');
-const Turn = require('../src/Turn');
 
 describe('Round', function() {
   let card1;
@@ -15,8 +14,9 @@ describe('Round', function() {
   let deck1;
   let deck2;
   let round1;
+  let round2;
 
-  beforeEach(function () {
+  beforeEach(function() {
     card1 = new Card(1, 'Who\'s Harry Potter\'s godfather?', ['Dumbledore', 'Sirius', 'Malfoy'], 'Sirius');
 
     card2 = new Card(2, 'What position in Quidditch does Harry Play?', ['seeker', 'beater', 'chaser'], 'seeker');
