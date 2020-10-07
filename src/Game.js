@@ -4,6 +4,7 @@ const util = require('./util');
 
 const Card = require('../src/Card');
 const Deck = require('../src/Deck');
+const Round = require('../src/Deck')
 
 class Game {
   constructor() {
@@ -11,6 +12,10 @@ class Game {
   }
 
   start() {
+    this.createRound();
+  }
+
+  createRound() {
     let pileOfCards = []
     let newCard;
     prototypeQuestions.forEach(card => {
@@ -18,7 +23,7 @@ class Game {
       pileOfCards.push(newCard);
     });
     let deck = new Deck(pileOfCards);
-    return deck;
+    let round = new Round(deck);
   }
 
   printMessage(deck, round) {

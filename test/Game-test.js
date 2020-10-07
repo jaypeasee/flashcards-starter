@@ -18,7 +18,7 @@ describe('Game', function() {
     expect(game).to.be.an.instanceof(Game);
   });
 
-  it.only('should start the game by creating cards', function() {
+  it('should start the game by creating cards', function() {
     game.start();
   })
 });
