@@ -5,7 +5,7 @@ const Round = require('../src/Round');
 const Deck = require('../src/Deck');
 const Card = require('../src/Card');
 
-describe('Round', function() {
+describe('Round', () => {
   let card1;
   let card2;
   let card3;
@@ -16,7 +16,7 @@ describe('Round', function() {
   let round1;
   let round2;
 
-  beforeEach(function() {
+  beforeEach(() => {
     card1 = new Card(1, 'Who\'s Harry Potter\'s godfather?', ['Dumbledore', 'Sirius', 'Malfoy'], 'Sirius');
 
     card2 = new Card(2, 'What position in Quidditch does Harry Play?', ['seeker', 'beater', 'chaser'], 'seeker');
@@ -33,33 +33,33 @@ describe('Round', function() {
     round2 = new Round(deck2);
   });
 
-  it('should be a function', function() {
+  it('should be a function', () => {
     expect(Round).to.be.a('function');
   });
 
-  it('should be an instance of Round', function() {
+  it('should be an instance of Round', () => {
     expect(round1).to.be.an.instanceof(Round);
   });
 
-  it('should be able to have a deck', function() {
+  it('should be able to have a deck', () => {
     expect(round1.deck.cards).to.deep.equal(deck1.cards);
     expect(round2.deck.cards).to.deep.equal(deck2.cards);
   });
 
-  it('should be able to return the top card in the deck', function() {
+  it('should be able to return the top card in the deck', () => {
     expect(round1.returnCurrentCard()).to.equal(card1);
     expect(round2.returnCurrentCard()).to.equal(card4);
   });
 
-  it('should start out with no turns taken ', function() {
+  it('should start out with no turns taken ', () => {
     expect(round1.turns).to.equal(0);
   });
 
-  it('should start out with no incorrect guesses', function() {
+  it('should start out with no incorrect guesses', () => {
     expect(round1.incorrectGuesses).to.deep.equal([]);
   });
 
-  it('should be able to take a turn', function() {
+  it('should be able to take a turn', () => {
     round1.takeTurn('Hogwarts');
 
     expect(round1.turns).to.equal(1);
@@ -70,18 +70,18 @@ describe('Round', function() {
     expect(round1.turns).to.equal(3);
   });
 
-  it('should remove the current card when a turn is taken', function() {
+  it('should remove the current card when a turn is taken', () => {
     round1.takeTurn('Hogwarts');
 
     expect(round1.deck.cards[0]).to.equal(card2);
   });
 
-  it('should evaluate the guess when a turn is taken', function() {
+  it('should evaluate the guess when a turn is taken', () => {
     expect(round1.takeTurn('Sirius')).to.equal(`correct!`);
     expect(round1.takeTurn('Snape')).to.equal(`incorrect!`);
   });
 
-  it('should collect card ids of incorrect guesses', function() {
+  it('should collect card ids of incorrect guesses', () => {
     round1.takeTurn('Snape');
     expect(round1.incorrectGuesses.length).is.deep.equal(1);
 
@@ -91,7 +91,7 @@ describe('Round', function() {
     expect(round1.incorrectGuesses.length).is.deep.equal(3);
   });
 
-  it('should calculate the user\'s score', function() {
+  it('should calculate the user\'s score', () => {
     round1.takeTurn('Sirius');
     round1.takeTurn('seeker');
     round1.takeTurn('Voldemort');
