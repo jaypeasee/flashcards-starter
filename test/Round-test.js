@@ -42,8 +42,8 @@ describe('Round', function() {
   });
 
   it('should be able to have a deck', function() {
-    expect(round1.deck).to.equal(deck1.cards);
-    expect(round2.deck).to.equal(deck2.cards);
+    expect(round1.deck.cards).to.deep.equal(deck1.cards);
+    expect(round2.deck.cards).to.deep.equal(deck2.cards);
   });
 
   it('should be able to return the top card in the deck', function() {
@@ -73,7 +73,7 @@ describe('Round', function() {
   it('should remove the current card when a turn is taken', function() {
     round1.takeTurn('Hogwarts');
 
-    expect(round1.deck[0]).to.equal(card2);
+    expect(round1.deck.cards[0]).to.equal(card2);
   });
 
   it('should evaluate the guess when a turn is taken', function() {

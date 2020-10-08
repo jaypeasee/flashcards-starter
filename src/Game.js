@@ -14,10 +14,12 @@ class Game {
   start() {
     let pileOfCards = [];
     let newCard;
+
     prototypeQuestions.forEach(card => {
       newCard = new Card(card.id, card.question, card.answers, card.correctAnswer);
       pileOfCards.push(newCard);
     });
+    
     let deck = new Deck(pileOfCards);
     this.currentRound = new Round(deck);
     this.printMessage(deck, this.currentRound);
