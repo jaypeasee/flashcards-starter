@@ -24,16 +24,25 @@ describe('Card', () => {
 
   it('should be able to store a question', () => {
     expect(card1.question).to.equal('What allows you to define a set of related information using key-value pairs?');
+  });
+
+  it('should be able to store a different question', () => {
     expect(card2.question).to.equal('What house does Harry Potter belong to?');
   });
 
   it('should be able to store a list of possible answers', () => {
     expect(card1.answers).to.deep.equal(['object', 'array', 'function']);
+  });
+
+  it('should be able to store a different list of possible answers', () => {
     expect(card2.answers).to.deep.equal(['Hufflepuff', 'Slytherin', 'Gryffindor']);
   });
 
   it('should be able to store the correct answer', () => {
     expect(card1.correctAnswer).to.equal('object');
+  });
+
+  it('should be able to store a different correct answer', () => {
     expect(card2.correctAnswer).to.equal('Gryffindor');
   });
 });
