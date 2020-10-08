@@ -7,10 +7,10 @@ const Deck = require('../src/Deck');
 const Card = require('../src/Card');
 const data = require('../src/data');
 
-describe('Game', function() {
+describe('Game', () => {
   let game;
 
-  beforeEach(function() {
+  beforeEach(() => {
     game = new Game();
   })
 

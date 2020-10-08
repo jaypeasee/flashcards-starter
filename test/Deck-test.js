@@ -25,7 +25,6 @@ describe('Deck', () => {
     card4 = new Card(4, 'What\'s the town outside of Hogwarts?', ['Diagon Alley', 'Privet Drive', 'Hogsmeade'], 'Hogsmeade');
 
     deck1 = new Deck([card1, card2, card3]);
-
     deck2 = new Deck([card4, card5]);
   });
 
@@ -39,11 +38,17 @@ describe('Deck', () => {
 
   it('should be able to hold cards', () => {
     expect(deck1.cards).to.deep.equal([card1, card2, card3]);
-    expect(deck2.cards).to.deep.equal([card4, card5]);
   });
+
+  it('should be able to hold different cards', () => {
+    expect(deck2.cards).to.deep.equal([card4, card5]);
+  })
 
   it('should be able to count its cards', () => {
     expect(deck1.countCards()).to.equal(3);
-    expect(deck2.countCards()).to.equal(2);
   });
+
+  it('should be able to count different cards', () => {
+    expect(deck2.countCards()).to.equal(2);
+  })
 });
