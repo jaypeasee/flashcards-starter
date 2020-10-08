@@ -11,7 +11,6 @@ describe('Card', () => {
     card1 = new Card(1, 'What allows you to define a set of related information using key-value pairs?', ['object', 'array', 'function'], 'object');
 
     card2 = new Card(2, 'What house does Harry Potter belong to?', ['Hufflepuff', 'Slytherin', 'Gryffindor'], 'Gryffindor');
-
   });
 
   it('should be a function', () => {

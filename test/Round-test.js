@@ -47,7 +47,7 @@ describe('Round', () => {
 
   it('should be able to have a different deck', () => {
     expect(round2.deck.cards).to.deep.equal(deck2.cards);
-  })
+  });
 
   it('should be able to return the top card in the deck', () => {
     expect(round1.returnCurrentCard()).to.equal(card1);
@@ -55,7 +55,7 @@ describe('Round', () => {
 
   it('should be able to return a different top card', () => {
     expect(round2.returnCurrentCard()).to.equal(card4);
-  })
+  });
 
   it('should start out with no turns taken ', () => {
     expect(round1.turns).to.equal(0);
@@ -77,7 +77,7 @@ describe('Round', () => {
     round1.takeTurn('Diagon Alley');
 
     expect(round1.turns).to.equal(3);
-  })
+  });
 
   it('should remove the current card when a turn is taken', () => {
     round1.takeTurn('Hogwarts');
@@ -91,7 +91,7 @@ describe('Round', () => {
 
   it('should be able to evaluate if the guess is incorrect', () => {
     expect(round1.takeTurn('Snape')).to.equal(`incorrect!`);
-  })
+  });
 
   it('should collect cards of incorrect guesses', () => {
     round1.takeTurn('Snape');
@@ -105,7 +105,7 @@ describe('Round', () => {
     round2.takeTurn('Snape');
 
     expect(round2.incorrectGuesses[0]).to.equal(4)
-  })
+  });
 
   it('should calculate the user\'s score', () => {
     round1.takeTurn('Sirius');
@@ -120,5 +120,5 @@ describe('Round', () => {
     round2.takeTurn('Hagrid');
 
     expect(round2.calculatePercentCorrect()).is.equal(50);
-  })
+  });
 });

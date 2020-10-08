@@ -34,7 +34,7 @@ describe('Game', () => {
     game.start();
 
     game.currentRound.deck.cards.forEach((card, index) => {
-      expect(game.currentRound.deck.cards[index]).to.be.an.instanceof(Card)
+      expect(game.currentRound.deck.cards[index]).to.be.an.instanceof(Card);
     });
   });
 
