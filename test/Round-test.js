@@ -43,13 +43,19 @@ describe('Round', () => {
 
   it('should be able to have a deck', () => {
     expect(round1.deck.cards).to.deep.equal(deck1.cards);
-    expect(round2.deck.cards).to.deep.equal(deck2.cards);
   });
+
+  it('should be able to have a different deck', () => {
+    expect(round2.deck.cards).to.deep.equal(deck2.cards);
+  })
 
   it('should be able to return the top card in the deck', () => {
     expect(round1.returnCurrentCard()).to.equal(card1);
-    expect(round2.returnCurrentCard()).to.equal(card4);
   });
+
+  it('should be able to return a different top card', () => {
+    expect(round2.returnCurrentCard()).to.equal(card4);
+  })
 
   it('should start out with no turns taken ', () => {
     expect(round1.turns).to.equal(0);
@@ -63,12 +69,15 @@ describe('Round', () => {
     round1.takeTurn('Hogwarts');
 
     expect(round1.turns).to.equal(1);
+  });
 
+  it('should be able to take multiple turns', () => {
+    round1.takeTurn('Hogwarts');
     round1.takeTurn('The Burrow');
     round1.takeTurn('Diagon Alley');
 
     expect(round1.turns).to.equal(3);
-  });
+  })
 
   it('should remove the current card when a turn is taken', () => {
     round1.takeTurn('Hogwarts');
@@ -76,29 +85,40 @@ describe('Round', () => {
     expect(round1.deck.cards[0]).to.equal(card2);
   });
 
-  it('should evaluate the guess when a turn is taken', () => {
+  it('should evaluate if the guess is correct', () => {
     expect(round1.takeTurn('Sirius')).to.equal(`correct!`);
-    expect(round1.takeTurn('Snape')).to.equal(`incorrect!`);
   });
 
-  it('should collect card ids of incorrect guesses', () => {
-    round1.takeTurn('Snape');
-    expect(round1.incorrectGuesses.length).is.deep.equal(1);
+  it('should be able to evaluate if the guess is incorrect', () => {
+    expect(round1.takeTurn('Snape')).to.equal(`incorrect!`);
+  })
 
+  it('should collect cards of incorrect guesses', () => {
+    round1.takeTurn('Snape');
     round1.takeTurn('Lupin');
     round1.takeTurn('Ron');
 
     expect(round1.incorrectGuesses.length).is.deep.equal(3);
   });
 
+  it('should store the ids of cards in the incorrect guess collection', () => {
+    round2.takeTurn('Snape');
+
+    expect(round2.incorrectGuesses[0]).to.equal(4)
+  })
+
   it('should calculate the user\'s score', () => {
     round1.takeTurn('Sirius');
     round1.takeTurn('seeker');
     round1.takeTurn('Voldemort');
+
+    expect(round1.calculatePercentCorrect()).is.equal(66);
+  });
+
+  it('should calculate a different score', () => {
     round2.takeTurn('Privet Drive');
     round2.takeTurn('Hagrid');
 
-    expect(round1.calculatePercentCorrect()).is.equal(66);
     expect(round2.calculatePercentCorrect()).is.equal(50);
-  });
+  })
 });
