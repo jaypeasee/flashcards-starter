@@ -6,15 +6,19 @@ const Card = require('../src/Card');
 
 describe('Turn', () => {
   let card1;
+  let card2;
   let turn1;
   let turn2;
+  let turn3;
 
   beforeEach(() => {
     card1 = new Card(1, 'Who\'s the Hogwarts Headmaster?', ['Voldemort', 'Harry Potter', 'Dumbledore'], 'Dumbledore');
 
-    turn1 = new Turn('Dumbledore', card1);
+    card2 = new Card(2, 'Who\'s Harry\'s least favorite professor', ['Dumbledore', 'Snape', 'McGonagall'], 'Snape');
 
+    turn1 = new Turn('Dumbledore', card1);
     turn2 = new Turn('Voldemort', card1);
+    turn3 = new Turn('Snape', card2);
   });
 
   it('should be a function', () => {
@@ -25,45 +29,58 @@ describe('Turn', () => {
     expect(turn1).to.be.an.instanceof(Turn);
   });
 
-  it('should be able to store a guess', () => {
+  it('should keep a guess', () => {
     expect(turn1.guess).to.equal('Dumbledore');
+  });
+
+  it('should be able to keep a different guess', () => {
     expect(turn2.guess).to.equal('Voldemort');
   });
 
-  it('should store a guess as a string', () => {
+  it('should keep a guess as a string', () => {
     const turn = new Turn(7);
+
     expect(turn.guess).to.equal('7');
   });
 
-  it('should be able to store a card', () => {
-    expect(turn1.card).to.be.an.instanceOf(Card);
-    expect(card1.answers[1]).to.equal('Harry Potter');
-    expect(card1.correctAnswer).to.equal('Dumbledore');
+  it('should use a card', () => {
+    expect(turn1.card).to.equal(card1);
+  });
+
+  it('should be able to use a different card', () => {
+
+    expect(turn3.card).to.equal(card2);
   });
 
   it('should be able to return the guess', () => {
-    const turn1 = new Turn('Dumbledore', card1);
-    const turn2 = new Turn('Harry Potter', card1);
-
     expect(turn1.returnGuess()).to.equal('Dumbledore');
-    expect(turn2.returnGuess()).to.equal('Harry Potter');
+  });
+
+  it('should be able to return a different guess', () => {
+    expect(turn2.returnGuess()).to.equal('Voldemort');
   });
 
   it('should be able to return the card', () => {
-    const card = new Card(2, 'Who\'s the Potions Professor?', ['Neville Longbottom', 'Snape', 'Fred and George'])
-    const turn = new Turn('Snape', card);
-
     expect(turn1.returnCard()).to.equal(card1);
-    expect(turn.returnCard()).to.equal(card);
   });
 
-  it('should evaluate if the guess is correct', () => {
+  it('should be able to return a different card', () => {
+    expect(turn3.returnCard()).to.equal(card2);
+  });
+
+  it('should evaluate true if the guess is correct', () => {
     expect(turn1.evaluateGuess()).to.equal(true);
+  });
+
+  it('should evaluate false if the guess is incorrect', () => {
     expect(turn2.evaluateGuess()).to.equal(false);
   });
 
-  it('should give feedback after a guess is made', () => {
+  it('should give feedback if a guess is correct', () => {
     expect(turn1.giveFeedback()).to.equal('correct!');
+  });
+
+  it('should give feedback if a guess is incorrect', () => {
     expect(turn2.giveFeedback()).to.equal('incorrect!');
   });
 });
